@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Select UPI App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    /* ---------- overall layout ---------- */
+    :root {
+      --btn-fg:   #fff;
+      --btn-rd:   14px;      /* border-radius */
+    }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:#f9f9f9;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      text-align:center;
+      gap:1.2rem;
+      padding:2rem 1rem;
+    }
+    h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 .75rem}
+
+    /* ---------- button styling ---------- */
+    .upi-btn{
+      width:min(90vw,320px);         /* full-width on mobile, max 320px */
+      padding:1.2rem 2rem;
+      font-size:1.05rem;
+      font-weight:600;
+      color:var(--btn-fg);
+      border:none;
+      border-radius:var(--btn-rd);
+      box-shadow:0 6px 12px rgba(0,0,0,.08);
+      transition:transform .15s ease, box-shadow .15s ease;
+      cursor:pointer;
+    }
+    .upi-btn:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(0,0,0,.12)}
+    .upi-btn:active{transform:translateY(0)}
+
+    /* size override for main UPI button */
+    .upi-main{font-size:1.25rem;padding:1.6rem 2.6rem;width:min(95vw,350px)}
+
+    /* colour palette per app */
+    .paytm   {background:#00baf2}
+    .gpay    {background:#4285f4}
+    .phonepe {background:#5b2a9d}
+    .super   {background:#ff6f00}
+    .cred    {background:#202124}
+    .bhim    {background:#006f44}
+    .generic {background:#1e88e5}
+  </style>
+
+  <!-- 🔑 single source of truth -->
+  <script>
+    const upiID = "k.sahu.3@superyes";   // 👈 change this
+    const payee = "Khushal Sahu";       // 👈 change this
+    const base  = `?pa=${upiID}&pn=${encodeURIComponent(payee)}`;
+  </script>
+</head>
+
+<body>
+  <h2>Choose your UPI app</h2>
+
+  <!-- Universal / Default (largest, top) -->
+  <button class="upi-btn upi-main generic" onclick="location=`upi://pay${base}`">
+    UPI (Default)
+  </button>
+
+  <!-- Paytm -->
+  <button class="upi-btn paytm" onclick="location=`paytmmp://upi/pay${base}`">
+    Pay via Paytm
+  </button>
+
+  <!-- GPay -->
+  <button class="upi-btn gpay" onclick="location=`tez://upi/pay${base}`">
+    Pay via GPay
+  </button>
+
+  <!-- PhonePe -->
+  <button class="upi-btn phonepe" onclick="location=`ppe://pay${base}`">
+    Pay via PhonePe
+  </button>
+
+  <!-- super.money -->
+  <button class="upi-btn super" onclick="location=`supermoney://upi/pay${base}`">
+    Pay via super.money
+  </button>
+
+  <!-- CRED -->
+  <button class="upi-btn cred" onclick="location=`cred://upi/pay${base}`">
+    Pay via CRED
+  </button>
+
+  <!-- BHIM -->
+  <button class="upi-btn bhim" onclick="location=`bhim://upi/pay${base}`">
+    Pay via BHIM
+  </button>
+
+  <p style="font-size:.85rem;color:#666;margin-top:.5rem">App installed nahi? Button dabane se kuch nahi hoga 🙂</p>
+</body>
+</html>
