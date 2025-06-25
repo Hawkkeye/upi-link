@@ -1,0 +1,26 @@
+<!-- 👇👇  apni UPI ID yahan daalo  👇👇 -->
+<script>
+  const upiID  = "k.sahu.3@superyes";        // ← single source of truth
+  const payee  = "Khushal Sahu";
+  const base   = `?pa=${upiID}&pn=${payee}`;
+</script>
+
+<!-- ✨ SUPER.MONEY  (test scheme first!) -->
+<button onclick="location=`supermoney://upi/pay${base}`">
+  Pay via super.money
+</button>
+
+<!-- ✨ CRED  (test scheme) -->
+<button onclick="location=`cred://upi/pay${base}`">
+  Pay via CRED
+</button>
+
+<!-- ✨ BHIM  (mostly works with bhim:// on iOS 16+) -->
+<button onclick="location=`bhim://upi/pay${base}`">
+  Pay via BHIM UPI
+</button>
+
+<!-- ✨ UNIVERSAL  (opens default app – WhatsApp right now) -->
+<button onclick="location=`upi://pay${base}`">
+  Other / Default (WhatsApp etc.)
+</button>
